@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --bg: black;
+    --ink: black;
+    --paper: beige;
+    --gold: gold;
+    --cherry: red;
+    --teal: teal;
+
+    --font-head: 'Press Start 2P', monospace;
+    --font-body: 'Inter', sans-serif;
+
+    --radius: 10px;
+    --stub-gap: 14px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.5;
+}
+
+main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px 64px;
+}
+
+.arc-header{
+    text-align: center;
+    position: relative;
+}
+
+.arc-header h1{
+    font-family: var(--font-head);
+    font-size: 400%;
+    color: var(--paper);
+    text-shadow: 3px 3px 0 var(--cherry);
+    line-height: 1.5;
+    margin: 30px 0 10px;
+}
+
+.arc-header p{
+    font-family: var(--font-head);
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+}
+
+.tix {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--stub-gap);
+    margin-top: 36px;
+}
+
+.tic {
+    --hole: 22px;
+    position: relative;
+    display: flex;
+    z-index: 0;
+    background-color: var(--paper);
+    color: var(--ink);
+    border-radius: var(--radius);
+    text-decoration: none;
+    overflow: hidden;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.stub {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 22px 18px;
+    gap: 6px;
+}
+
+.stub-title {
+    font-size: 19px;
+    font-weight: 800;
+    margin: 2px 0px 20px;
+}
+
+.stub-desc {
+    font-size: 13px;
+    color: var(--ink);
+}
+
+.stub-tear {
+    width: 54px;
+    flex-shrink: 0;
+    background: var(--gold);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    writing-mode: vertical-rl;
+    font-family: var(--font-head);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--ink);
+    text-transform: uppercase;
+}
+
+.tic .stub-tear::before,
+.tic .stub-tear::after {
+  content: "";
+  position: absolute;
+}
+
+.tic::before,
+.tic::after {
+  content: "";
+  position: absolute;
+  width: var(--hole);
+  height: var(--hole);
+  background: var(--ink);
+  border-radius: 50%;
+  right: 13%;
+  z-index: 2;
+}
+
+.tic::before { top: calc(var(--hole) / -2); }
+.tic::after { bottom: calc(var(--hole) / -2); }
