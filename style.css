@@ -39,6 +39,7 @@ main {
 }
 
 .arc-header{
+    padding: 48px 24px 32px;
     text-align: center;
     position: relative;
 }
@@ -121,6 +122,7 @@ main {
     background-position: left center;
     background-size: 2px 100%;
     background-repeat: repeat-y;
+    padding: 20px 0;
 }
 
 .tic .stub-tear::before,
@@ -143,3 +145,48 @@ main {
 
 .tic::before { top: calc(var(--hole) / -2); }
 .tic::after { bottom: calc(var(--hole) / -2); }
+
+.game-page {
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 20px;
+    background: var(--bg);
+    flex-wrap: flex;
+}
+
+.back {
+    font-family: var(--font-head);
+    font-size: 10px;
+    color: var(--paper);
+    text-decoration: none;
+    border: 2px solid var(--gold);
+    border-radius: 999px;
+    padding: 8px 14px;
+    white-space: nowrap;
+}
+
+.game {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    padding: 32px 20px 60px;
+    text-align: center;
+}
+
+.game-name{
+    font-family: var(--font-head);
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 1px;
+}
