@@ -159,7 +159,7 @@ main {
     gap: 12px;
     padding: 20px;
     background: var(--bg);
-    flex-wrap: flex;
+    flex-wrap: wrap;
 }
 
 .back {
@@ -189,4 +189,90 @@ main {
     font-size: 13px;
     color: var(--gold);
     letter-spacing: 1px;
+}
+
+.scores {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.score-chip {
+    min-width: 100px;
+    padding: 10px 16px;
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    color: var(--paper);
+    font-family: var(--font-head);
+    font-size: 9px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.score-chip span{
+    display: block;
+    margin-top: 6px;
+    font-family: var(--font-body);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--gold);
+}
+
+.ttt-board {
+    display: grid;
+    grid-template-columns: repeat(3, 90px);
+    grid-template-rows: repeat(3, 90px);
+    gap: 6px;
+}
+
+.ttt-cell{
+    border: 2px solid var(--gold);
+    border-radius: 6px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-head);
+    font-size: 28px;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.ttt-cell:hover{
+    transform: translateY(-2px);
+}
+
+.ttt-cell:active{
+    transform: translateY(1px);
+}
+
+.turn {
+    color: var(--paper);
+}
+
+.btn-row{
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 4px;
+}
+
+.btn {
+    border: 2px solid var(--gold);
+    border-radius: 999px;
+    padding: 10px 16px;
+    background: transparent;
+    color: var(--paper);
+    font-family: var(--font-body);
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.15s, color 0.15s, transform 0.1s;
+}
+
+.btn:hover{
+    background-color: var(--gold);
+    color: var(--ink);
+}
+
+.btn:active{
+    transform: translateY(2px);
 }
