@@ -276,3 +276,7 @@ main {
 .btn:active{
     transform: translateY(2px);
 }
+
+.ttt-cell.winner{
+    background: var(--gold);
+}
