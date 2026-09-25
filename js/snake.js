@@ -22,12 +22,6 @@ function draw(){
     ctx.fillStyle = "black";
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    for(let x = 0; x < gridSize; x++){
-        for(let y = 0; y < gridSize; y++){
-            ctx.strokeRect(x*tileSize, y*tileSize, tileSize, tileSize);
-        }
-    }
-
     for(const s of snake){
         ctx.fillRect(s.x*tileSize, s.y*tileSize, tileSize, tileSize);
     }
@@ -42,7 +36,8 @@ function moveSnake(){
     const newHead = {
         x: head.x + direction.x, y: head.y+direction.y
     };
-    if(newHead.x < 0 || newHead.x >= gridSize || newHead.y < 0 || newHead.y >= gridSize){
+    const hitSelf = snake.some(s => s.x === newHead.x && s.y === newHead.y);
+    if(newHead.x < 0 || newHead.x >= gridSize || newHead.y < 0 || newHead.y >= gridSize || hitSelf){
         clearInterval(gameLoop);
         return;
     }
@@ -51,11 +46,42 @@ function moveSnake(){
 
     snake.unshift(newHead);
 
-    if(eating) spawnFood();
+    if(eating) food = spawnFood();
     else snake.pop();
 }
 
-const gameLoop = setInterval(() => {
-    moveSnake();
+document.addEventListener("keydown", (e) => {
+    if((e.key === "ArrowUp" || e.key.toLowerCase() === "w") && direction.y !== 1){
+        direction = {x: 0, y: -1};
+    }
+    if((e.key === "ArrowDown" || e.key.toLowerCase() ==="s") && direction.y !== -1){
+        direction = {x: 0, y: 1};
+    }
+    if((e.key === "ArrowLeft" || e.key.toLowerCase() === "a") && direction.x !== 1){
+        direction = {x: -1, y: 0};
+    }
+    if((e.key === "ArrowRight" || e.key.toLowerCase() === "d") && direction.x !== -1){
+        direction = {x: 1, y: 0};
+    }
+});
+
+function resetGame(){
+    snake=[{x: 10, y: 10}];
+    direction = {x: 1, y: 0};
+    food = spawnFood();
     draw();
-}, 150);
+}
+
+let gameLoop = null;
+const start = document.querySelector("#start");
+
+start.addEventListener("click", () => {
+    if(gameLoop !== null) {
+        clearInterval(gameLoop);
+    }
+    resetGame();
+    gameLoop = setInterval(() => {
+        moveSnake();
+        draw();
+    }, 150);
+})
