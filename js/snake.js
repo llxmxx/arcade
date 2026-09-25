@@ -39,6 +39,11 @@ function moveSnake(){
     const hitSelf = snake.some(s => s.x === newHead.x && s.y === newHead.y);
     if(newHead.x < 0 || newHead.x >= gridSize || newHead.y < 0 || newHead.y >= gridSize || hitSelf){
         clearInterval(gameLoop);
+        ctx.fillStyle="red";
+        ctx.font = "24px 'Press Start 2P'";
+        ctx.textAlign = "center";
+        ctx.fillText("GAME OVER", canvas.width/2, 50);
+        gameLoop = null;
         return;
     }
 
@@ -48,6 +53,7 @@ function moveSnake(){
 
     if(eating) food = spawnFood();
     else snake.pop();
+    return true;
 }
 
 document.addEventListener("keydown", (e) => {
@@ -81,7 +87,9 @@ start.addEventListener("click", () => {
     }
     resetGame();
     gameLoop = setInterval(() => {
-        moveSnake();
-        draw();
+        const playing = moveSnake();
+        if(playing){
+            draw();
+        }
     }, 150);
 })
