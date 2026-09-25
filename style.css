@@ -280,3 +280,8 @@ main {
 .ttt-cell.winner{
     background: var(--gold);
 }
+
+#snake-board {
+    border: 2px solid var(--gold);
+    background-color: var(--paper);
+}
