@@ -5,6 +5,7 @@ const tileSize = canvas.width/gridSize;
 
 let snake = [{x: 10, y: 10}];
 let direction = {x: 1, y: 0};
+let nextDirection = {x: 1, y: 0};
 
 function spawnFood(){
     let pos;
@@ -22,15 +23,27 @@ function draw(){
     ctx.fillStyle = "black";
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    for(const s of snake){
-        ctx.fillRect(s.x*tileSize, s.y*tileSize, tileSize, tileSize);
+    for(let i = 0; i < snake.length; i++){
+        const s = snake[i];
+        const x = s.x*tileSize+2;
+        const y = s.y*tileSize+2;
+        const size = tileSize-4;
+
+        ctx.fillStyle = (i===0 ? "gold" : "black");
+        ctx.beginPath();
+        ctx.roundRect(x, y, size, size, 5);
+        ctx.fill();
     }
 
+    const size = tileSize-5;
     ctx.fillStyle="red";
-    ctx.fillRect(food.x*tileSize, food.y*tileSize, tileSize, tileSize);
+    ctx.beginPath();
+    ctx.roundRect(food.x*tileSize, food.y*tileSize, size, size, 6);
+    ctx.fill();
 }
 
 function moveSnake(){
+    direction = nextDirection;
     const head = snake[0];
 
     const newHead = {
@@ -58,22 +71,23 @@ function moveSnake(){
 
 document.addEventListener("keydown", (e) => {
     if((e.key === "ArrowUp" || e.key.toLowerCase() === "w") && direction.y !== 1){
-        direction = {x: 0, y: -1};
+        nextDirection = {x: 0, y: -1};
     }
     if((e.key === "ArrowDown" || e.key.toLowerCase() ==="s") && direction.y !== -1){
-        direction = {x: 0, y: 1};
+        nextDirection = {x: 0, y: 1};
     }
     if((e.key === "ArrowLeft" || e.key.toLowerCase() === "a") && direction.x !== 1){
-        direction = {x: -1, y: 0};
+        nextDirection = {x: -1, y: 0};
     }
     if((e.key === "ArrowRight" || e.key.toLowerCase() === "d") && direction.x !== -1){
-        direction = {x: 1, y: 0};
+        nextDirection = {x: 1, y: 0};
     }
 });
 
 function resetGame(){
     snake=[{x: 10, y: 10}];
     direction = {x: 1, y: 0};
+    nextDirection = {x: 1, y: 0};
     food = spawnFood();
     draw();
 }
