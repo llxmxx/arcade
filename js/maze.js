@@ -37,24 +37,24 @@ function drawMaze() {
     for(let i = 0; i < maze.length; i++){
         for(let j = 0; j < maze[i].length; j++){
             if(maze[i][j]==="1"){
-                ctx.fillStyle = "black";
+                ctx.fillStyle = "#111111";
                 ctx.fillRect(j*tileSize, i*tileSize, tileSize, tileSize);
             }
         }
     }
 
-    ctx.fillStyle = "red";
+    ctx.fillStyle = "#e63946"; 
     ctx.beginPath();
     ctx.arc(goal.col*tileSize + tileSize/2, goal.row*tileSize+tileSize/2, tileSize*0.3, 0, Math.PI*2);
     ctx.fill();
 
-    ctx.fillStyle = "gold";
+    ctx.fillStyle = "#f5c542";
     ctx.beginPath();
     ctx.arc(player.col*tileSize + tileSize/2, player.row*tileSize+tileSize/2, tileSize*0.3, 0, Math.PI*2);
     ctx.fill();
 
     if(won){
-        ctx.fillStyle = "red";
+        ctx.fillStyle = "#e63946";
         ctx.font = "24px 'Press Start 2P'";
         ctx.textAlign = "center";
         ctx.fillText("YOU WIN!", canvas.width/2, canvas.height/2);

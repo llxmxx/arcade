@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
-    --bg: black;
-    --ink: black;
-    --paper: beige;
-    --gold: gold;
-    --cherry: red;
+    --bg: #0d0d0d;
+    --ink: #252525;
+    --paper: #f3ead3;
+    --gold: #f5c542;
+    --cherry: #e63946;
 
     --font-head: 'Press Start 2P', monospace;
     --font-body: 'Inter', sans-serif;
@@ -142,7 +142,7 @@ main {
   position: absolute;
   width: var(--hole);
   height: var(--hole);
-  background: var(--ink);
+  background: var(--bg);
   border-radius: 50%;
   right: 13%;
   z-index: 2;
@@ -289,4 +289,48 @@ main {
 #game-board {
     border: 2px solid var(--gold);
     background-color: var(--paper);
+}
+
+.controls-hud{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 12px;
+    border-top-left-radius: 12px;
+}
+
+.controls-hud .key{
+    padding: 3px 7px;
+    border-radius:3px;
+    background: var(--cherry);
+    color: var(--paper);
+    font-family: monospace;
+    font-size: 10px;
+}
+
+.controls-hud .hud-dot {
+    color: var(--ink);
+    margin: 0 2px;
+}
+
+@keyframes arcade-in{
+    from{
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.game, .tix, .arc-header{
+    animation: arcade-in 0.3s ease-out;
 }

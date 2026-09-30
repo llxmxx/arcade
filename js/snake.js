@@ -20,7 +20,7 @@ function spawnFood(){
 let food = spawnFood();
 
 function draw(){
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "#111111";
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     for(let i = 0; i < snake.length; i++){
@@ -29,14 +29,14 @@ function draw(){
         const y = s.y*tileSize+2;
         const size = tileSize-4;
 
-        ctx.fillStyle = (i===0 ? "gold" : "black");
+        ctx.fillStyle = (i===0 ? "#f5c542" : "#111111");
         ctx.beginPath();
         ctx.roundRect(x, y, size, size, 5);
         ctx.fill();
     }
 
     const size = tileSize-5;
-    ctx.fillStyle="red";
+    ctx.fillStyle="#e63946";
     ctx.beginPath();
     ctx.roundRect(food.x*tileSize, food.y*tileSize, size, size, 6);
     ctx.fill();
@@ -52,7 +52,7 @@ function moveSnake(){
     const hitSelf = snake.some(s => s.x === newHead.x && s.y === newHead.y);
     if(newHead.x < 0 || newHead.x >= gridSize || newHead.y < 0 || newHead.y >= gridSize || hitSelf){
         clearInterval(gameLoop);
-        ctx.fillStyle="red";
+        ctx.fillStyle="#e63946";
         ctx.font = "24px 'Press Start 2P'";
         ctx.textAlign = "center";
         ctx.fillText("GAME OVER", canvas.width/2, 50);
