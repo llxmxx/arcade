@@ -6,7 +6,6 @@
     --paper: beige;
     --gold: gold;
     --cherry: red;
-    --teal: teal;
 
     --font-head: 'Press Start 2P', monospace;
     --font-body: 'Inter', sans-serif;
@@ -17,6 +16,12 @@
 
 * {
     box-sizing: border-box;
+    cursor: none;
+}
+
+:focus {
+    outline: 3px dashed var(--gold);
+    outline-offset: 4px;
 }
 
 html {

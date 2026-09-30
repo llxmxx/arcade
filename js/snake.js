@@ -70,16 +70,16 @@ function moveSnake(){
 }
 
 document.addEventListener("keydown", (e) => {
-    if((e.key === "ArrowUp" || e.key.toLowerCase() === "w") && direction.y !== 1){
+    if((e.key.toLowerCase() === "w") && direction.y !== 1){
         nextDirection = {x: 0, y: -1};
     }
-    if((e.key === "ArrowDown" || e.key.toLowerCase() ==="s") && direction.y !== -1){
+    if((e.key.toLowerCase() ==="s") && direction.y !== -1){
         nextDirection = {x: 0, y: 1};
     }
-    if((e.key === "ArrowLeft" || e.key.toLowerCase() === "a") && direction.x !== 1){
+    if((e.key.toLowerCase() === "a") && direction.x !== 1){
         nextDirection = {x: -1, y: 0};
     }
-    if((e.key === "ArrowRight" || e.key.toLowerCase() === "d") && direction.x !== -1){
+    if((e.key.toLowerCase() === "d") && direction.x !== -1){
         nextDirection = {x: 1, y: 0};
     }
 });
