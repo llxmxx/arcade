@@ -281,7 +281,7 @@ main {
     background: var(--gold);
 }
 
-#snake-board {
+#game-board {
     border: 2px solid var(--gold);
     background-color: var(--paper);
 }

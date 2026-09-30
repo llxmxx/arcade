@@ -1,4 +1,4 @@
-const canvas = document.querySelector("#snake-board");
+const canvas = document.querySelector("#game-board");
 const ctx = canvas.getContext("2d");
 const gridSize = 20;
 const tileSize = canvas.width/gridSize;
