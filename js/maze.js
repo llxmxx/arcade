@@ -1,22 +1,34 @@
 const canvas  = document.querySelector("#game-board");
 const ctx = canvas.getContext("2d");
+const newBtn = document.querySelector("#new");
 
-const maze = [
-    "1011111111",
-    "1000000001",
-    "1011111101",
-    "1010000101",
-    "1010110100",
-    "1000100101",
-    "1110100101",
-    "1000100001",
-    "1000000001",
-    "1111111111"
-];
-const tileSize = canvas.width/maze[0].length;
+const mazeSize = 21;
+let maze = Array.from({length: mazeSize}, ()=> Array(mazeSize).fill("1"));
+
+function generateMaze(row, col){
+    maze[row][col] = "0";
+    const directions = [[-2, 0], [2, 0], [0, -2], [0, 2]];
+    directions.sort(() => Math.random() - 0.5);
+
+    for(const [rowChange, colChange] of directions){
+        const newRow = row + rowChange;
+        const newCol = col + colChange;
+
+        if(newRow > 0 && newRow < mazeSize-1 && newCol > 0 && newCol < mazeSize-1 && maze[newRow][newCol] === "1"){
+            maze[row+rowChange/2][col+colChange/2] = "0";
+            generateMaze(newRow, newCol);
+        }
+    }
+}
+
+generateMaze(1, 1);
+
+maze[0][1] = "0";
+maze[mazeSize-1][mazeSize-2] = "0";
+const tileSize = canvas.width/mazeSize;
 
 let player = {row: 0, col: 1};
-const goal = {row: 4, col: 9};
+const goal = {row: mazeSize-1, col: mazeSize-2};
 let won=false;
 
 function drawMaze() {
@@ -74,6 +86,19 @@ document.addEventListener("keydown", (e) => {
     if(key === "s") movePlayer(1, 0);
     if(key === "a") movePlayer(0, -1);
     if(key === "d") movePlayer(0, 1);
+})
+
+newBtn.addEventListener("click", () => {
+    maze = Array.from({length: mazeSize}, ()=> Array(mazeSize).fill("1"));
+    generateMaze(1, 1);
+
+    maze[0][1] = "0";
+    maze[mazeSize-1][mazeSize-2] = "0";
+
+    player = {row: 0, col: 1};
+    won=false;
+
+    drawMaze();
 })
 
 drawMaze();
